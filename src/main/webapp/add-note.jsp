@@ -23,13 +23,13 @@
 						<p class="fs-4 text-center">Add Notes</p>
 						
 						<%
-						String msg=(String) session.getAttribute("fail"); 
+						String msg=(String) session.getAttribute("success"); 
 						if(msg!=null){
 						%>
 							<p class="text-center fs-4"> <%= msg %></p>
 						<% 
 						
-						session.removeAttribute("fail");
+						session.removeAttribute("success");
 						}
 						%>
 						<form action="add_notes" method="post">

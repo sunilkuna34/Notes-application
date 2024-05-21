@@ -14,11 +14,11 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="home.jsp">Home</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="update.jsp?id=<%= user12.getId()%>">Profile</a></li>
+						aria-current="page" href="profile.jsp">Profile</a></li>
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="changepassword.jsp">Change Password</a></li>
 						<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="isLogout.jsp">Logout</a></li>
+						aria-current="page" href="islogout.jsp">Logout</a></li>
 				</ul>
 
 			</div>

@@ -11,19 +11,38 @@
 
 </head>
 <body>
+<%
+User sessionUser=(User)session.getAttribute("userobj");
+int id=sessionUser.getId();
+if(sessionUser ==null){
+	response.sendRedirect("login.jsp");
+}else{
+%>
 <%@ include file="components/homenavbar.jsp" %>
 
 <h1 style="text-align: center;">Welcome to Homepage</h1>
 <%
-						String msg=(String) session.getAttribute("success"); 
+						String msg=(String)session.getAttribute("success"); 
 						if(msg!=null){
 						%>
-							<p class="text-center fs-4"> <%= msg %></p>
+							<p class="text-center fs-4"> <%=msg%></p>
 						<% 
 						
 						session.removeAttribute("success");
 						}
 						%>
+						
+						<%
+						String msg1=(String)session.getAttribute("update"); 
+						if(msg1!=null){
+						%>
+							<p class="text-center fs-4"> <%=msg1%></p>
+						<% 
+						
+						session.removeAttribute("update");
+						}
+						%>
+						
 						
 						<%
 						User user=(User)session.getAttribute("userobj");
@@ -44,9 +63,9 @@ for(Notes n:list){
 	<div class="d-flex flex-wrap justify-content-evenly">
 	<div>
 	<h2 class="text-success card-title"><%=n.getTitle() %></h2>
-	<a href="#" class="btn btn-sm btn-info">view</a>
-		<a href="#" class="btn btn-sm btn-info">update</a>
-			<a href="#" class="btn btn-sm btn-danger">delete</a>
+	<a href="ViewNotes.jsp?id=<%=n.getId()%>" class="btn btn-sm btn-info">view</a>
+		<a href="ViewNotes.jsp?id=<%=n.getId()%>" class="btn btn-sm btn-info">update</a>
+			<a href="delete.jsp?id=<%=n.getId()%>" class="btn btn-sm btn-danger">delete</a>
 		
 	
 	</div>
@@ -55,6 +74,7 @@ for(Notes n:list){
 </div>
 
 
+<%}%>
 <%}%>
 </div>
 </div>

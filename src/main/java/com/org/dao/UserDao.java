@@ -93,6 +93,38 @@ return list;
 	
 	
 }
+public void changePwdById(int id,String pwd) {
+	EntityManagerFactory emf=Persistence.createEntityManagerFactory("karthik");
+	
+	EntityManager em=emf.createEntityManager();
+EntityTransaction	et=em.getTransaction();
+	User std=em.find(User.class, id);
+	std.setPassword(pwd);
+			
+	
+	et.begin();
+	em.merge(std);
+	et.commit();
+	System.out.println("Updated inserted");
+	
+}
+
+public void deleteUserById(int id) {
+	EntityManagerFactory emf=Persistence.createEntityManagerFactory("karthik");
+	
+	EntityManager em=emf.createEntityManager();
+EntityTransaction	et=em.getTransaction();
+User std=em.find(User.class, id);
+et.begin();
+em.remove(std);
+et.commit();
+System.out.println("Deleted succesfully");
+	
+	
+	
+
+}
+
 
 }
 
