@@ -22,8 +22,9 @@ public class updateuser extends HttpServlet {
 		String email=req.getParameter("email");
 		int id=Integer.parseInt(req.getParameter("id"));
 		
+		UserDao dao=new UserDao();
 		
-		User user=new User();
+		User user=dao.fetchUserById(id);
 		user.setId(id);
 		user.setName(name);
 		user.setAge(age);
@@ -31,7 +32,6 @@ public class updateuser extends HttpServlet {
 		user.setEmail(email);
 		
 		
-		UserDao dao=new UserDao();
 		dao.SaveAndUpdateUser(user);
 		
 		HttpSession session=req.getSession();

@@ -19,7 +19,9 @@
 </head>
 <body>
 <%
-User sessionUser=(User)session.getAttribute("userobj");
+int userId=(Integer)session.getAttribute("userId");
+UserDao dao=new UserDao();
+User sessionUser=dao.fetchUserById(userId);
 
 if(sessionUser ==null){
 	response.sendRedirect("login.jsp");
@@ -43,7 +45,7 @@ if(sessionUser ==null){
 						<form action="Update_Note" method="post">
 							<div class="mb-3">
 								<label class="form-label">Title</label> <input
-									name="title" type="text" class="form-control" value="<%=u.getTitle() %>" required>
+									name="title" type="text" class="form-control" value="<%=u.getTitle()%>" required>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Description</label> 

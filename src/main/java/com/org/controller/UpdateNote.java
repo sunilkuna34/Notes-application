@@ -29,9 +29,11 @@ public class UpdateNote extends HttpServlet {
 		notes.setTitle(title);
 		notes.setDescription(description);
 		notes.setId(id);;
-		
+		UserDao dao=new UserDao();
 		HttpSession session = req.getSession();
-		User user = (User)session.getAttribute("userobj");
+		int userId = (Integer)session.getAttribute("userId");
+		User user=dao.fetchUserById(userId);
+		
 		
 	List<Notes> list=new ArrayList<>();
 	list.add(notes);
@@ -39,7 +41,7 @@ public class UpdateNote extends HttpServlet {
 	user.setNotesList(list);
 	notes.setUser(user);
 	
-	UserDao dao=new UserDao();
+	
 	dao.SaveAndUpdateUser(user);
 	
 	session.setAttribute("success", "Notes updated succesfully");

@@ -25,7 +25,7 @@ public class LoginUser extends HttpServlet
 		HttpSession session=req.getSession();
 
 		if(user!=null) {
-			session.setAttribute("userobj", user);
+			session.setAttribute("userId", user.getId());
 			resp.sendRedirect("home.jsp");
 		}
 		else {

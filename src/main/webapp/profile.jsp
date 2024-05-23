@@ -11,8 +11,9 @@
 </head>
 <body>
 <%
-User sessionUser=(User)session.getAttribute("userobj");
-int id=sessionUser.getId();
+int userId=(Integer)session.getAttribute("userId");
+UserDao dao=new UserDao();
+User sessionUser=dao.fetchUserById(userId);
 if(sessionUser ==null){
 	response.sendRedirect("login.jsp");
 }else{
@@ -41,8 +42,8 @@ if(sessionUser ==null){
 							</thead>
 								<tbody>
 								<%
-								UserDao dao=new UserDao();
-								User u=dao.fetchUserById(id);
+								
+								User u=dao.fetchUserById(userId);
 								
 									
 								

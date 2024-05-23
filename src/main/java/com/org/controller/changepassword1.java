@@ -16,9 +16,10 @@ public class changepassword1 extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
+		UserDao dao=new UserDao();
 		HttpSession session=req.getSession();
-		User user=(User)session.getAttribute("userobj");
+		int userId=(Integer)session.getAttribute("userId");
+		User user=dao.fetchUserById(userId);
 		String userpwd=user.getPassword();
 		int id=Integer.parseInt(req.getParameter("id"));
 		String oldpwd=req.getParameter("password");
@@ -26,7 +27,7 @@ public class changepassword1 extends HttpServlet {
 		String pwd2=req.getParameter("password2");
 		
 		if(userpwd.equals(oldpwd) && pwd1.equals(pwd2)) {
-			UserDao dao=new UserDao();
+			
 			dao.changePwdById(id,pwd1);
 			session.setAttribute("success", "pwd succesfully change");
 

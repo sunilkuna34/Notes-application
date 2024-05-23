@@ -1,3 +1,4 @@
+<%@page import="com.org.dao.UserDao"%>
 <%@page import="com.org.dto.Notes"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,9 +13,10 @@
 </head>
 <body>
 <%
-User sessionUser=(User)session.getAttribute("userobj");
-int id=sessionUser.getId();
-if(sessionUser ==null){
+int userId=(Integer)session.getAttribute("userId");
+UserDao dao=new UserDao();
+User user=dao.fetchUserById(userId);
+if(user ==null){
 	response.sendRedirect("login.jsp");
 }else{
 %>
@@ -45,7 +47,7 @@ if(sessionUser ==null){
 						
 						
 						<%
-						User user=(User)session.getAttribute("userobj");
+						
 						List<Notes> list=user.getNotesList();
 						
 						%>

@@ -19,7 +19,10 @@
 <body>
 <%@ include file="components/homenavbar.jsp" %>
 
-<% User sessionUser =(User) session.getAttribute("userobj");
+<% int userId =(Integer) session.getAttribute("userId");
+UserDao dao=new UserDao();
+User sessionUser=dao.fetchUserById(userId);
+
 	if(sessionUser==null){
 		response.sendRedirect("login.jsp");
 	}
@@ -28,8 +31,7 @@
 		
 		int id=sessionUser.getId();
 		
-		UserDao dao =new UserDao();
-		User user =dao.fetchUserById(id);
+		
 		%>
 	
 
